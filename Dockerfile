@@ -36,6 +36,7 @@ RUN useradd -U -m superset && \
     pip install --upgrade --no-cache-dir pip && \
     pip install --no-cache-dir pip -r /tmp/requirements.txt && \
     pip install --no-cache-dir \
+        python-ldap==3.0.0 \
         redis==2.10.6 \
         sqlalchemy-clickhouse==0.1.3.post0 \
         superset==${SUPERSET_VERSION}
