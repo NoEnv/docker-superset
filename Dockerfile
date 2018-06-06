@@ -1,10 +1,10 @@
 FROM python:3.6-slim
 
 # Superset version
-ARG SUPERSET_VERSION=0.25.5
+ARG SUPERSET_VERSION=0.25.6
 
 LABEL maintainer "NoEnv"
-LABEL version "0.25.5"
+LABEL version "0.25.6"
 LABEL description "Superset Docker Image"
 
 # Configure environment
