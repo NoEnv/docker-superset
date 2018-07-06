@@ -38,6 +38,7 @@ RUN useradd -U -m superset && \
     pip install --no-cache-dir \
         python-ldap==3.1.0 \
         redis==2.10.6 \
+        infi.clickhouse-orm==0.9.8 \
         sqlalchemy-clickhouse==0.1.3.post0 \
         superset==${SUPERSET_VERSION}
 
