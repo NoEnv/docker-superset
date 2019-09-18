@@ -1,10 +1,10 @@
 FROM python:3.6-slim
 
 # Superset version
-ARG SUPERSET_VERSION=0.28.1
+ARG SUPERSET_VERSION=0.34.0
 
 LABEL maintainer "NoEnv"
-LABEL version "0.28.1"
+LABEL version "0.34.0"
 LABEL description "Superset Docker Image"
 
 # Configure environment
@@ -37,10 +37,10 @@ RUN useradd -U -m superset && \
     pip install --no-cache-dir pip -r /tmp/requirements.txt && \
     pip install --no-cache-dir \
         python-ldap==3.1.0 \
-        redis==2.10.6 \
-        infi.clickhouse-orm==1.0.2 \
+        redis==3.2.1 \
+        infi.clickhouse-orm==1.2.0 \
         sqlalchemy-clickhouse==0.1.5.post0 \
-        superset==${SUPERSET_VERSION}
+        apache-superset==${SUPERSET_VERSION}
 
 # Configure Filesystem
 COPY superset /usr/local/bin
