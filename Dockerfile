@@ -38,6 +38,7 @@ RUN useradd -U -m superset && \
     pip install --no-cache-dir \
         python-ldap==3.1.0 \
         redis==3.2.1 \
+        gevent==1.4.0 \
         infi.clickhouse-orm==1.2.0 \
         sqlalchemy-clickhouse==0.1.5.post0 \
         apache-superset==${SUPERSET_VERSION}
@@ -52,6 +53,5 @@ WORKDIR /home/superset
 # Deploy application
 EXPOSE 8088
 HEALTHCHECK CMD ["curl", "-f", "http://localhost:8088/health"]
-ENTRYPOINT ["superset"]
-CMD ["runserver"]
+ENTRYPOINT ["superset-run"]
 USER superset
