@@ -1,10 +1,10 @@
 FROM python:3.6-slim
 
 # Superset version
-ARG SUPERSET_VERSION=0.34.0
+ARG SUPERSET_VERSION=0.34.1
 
 LABEL maintainer "NoEnv"
-LABEL version "0.34.0"
+LABEL version "0.34.1"
 LABEL description "Superset Docker Image"
 
 # Configure environment
@@ -36,7 +36,7 @@ RUN useradd -U -m superset && \
     pip install --upgrade --no-cache-dir pip && \
     pip install --no-cache-dir pip -r /tmp/requirements.txt && \
     pip install --no-cache-dir \
-        python-ldap==3.1.0 \
+        python-ldap==3.2.0 \
         redis==3.2.1 \
         gevent==1.4.0 \
         infi.clickhouse-orm==1.2.0 \
