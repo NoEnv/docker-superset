@@ -1,10 +1,10 @@
-FROM python:3.6-slim
+FROM python:3.7-slim
 
 # Superset version
-ARG SUPERSET_VERSION=0.35.2
+ARG SUPERSET_VERSION=0.36.0
 
 LABEL maintainer "NoEnv"
-LABEL version "0.35.2"
+LABEL version "0.36.0"
 LABEL description "Superset Docker Image"
 
 # Configure environment
@@ -29,8 +29,6 @@ RUN useradd -U -m superset && \
         libffi-dev \
         curl \
         python-dev && \
-    apt-get clean -y && \
-    rm -r /var/lib/apt/lists/* && \
     curl -s https://raw.githubusercontent.com/apache/incubator-superset/${SUPERSET_VERSION}/requirements.txt \
         -o /tmp/requirements.txt && \
     pip install --upgrade --no-cache-dir pip && \
@@ -39,9 +37,18 @@ RUN useradd -U -m superset && \
         python-ldap==3.2.0 \
         redis==3.2.1 \
         gevent==1.4.0 \
-        infi.clickhouse-orm==1.2.0 \
+        infi.clickhouse-orm==1.3.0 \
         sqlalchemy-clickhouse==0.1.5.post0 \
-        apache-superset==${SUPERSET_VERSION}
+        apache-superset==${SUPERSET_VERSION} && \
+    apt-get --purge autoremove -y \
+        build-essential \
+        libldap2-dev \
+        libsasl2-dev \
+        libssl-dev \
+        libffi-dev \
+        python-dev && \
+    apt-get clean -y && \
+    rm -r /var/lib/apt/lists/*
 
 # Configure Filesystem
 COPY superset /usr/local/bin
