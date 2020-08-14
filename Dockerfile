@@ -28,12 +28,14 @@ RUN useradd -U -m superset && \
         libssl-dev \
         libffi-dev \
         curl \
+        python3-pil \
         python-dev && \
     curl -s https://raw.githubusercontent.com/apache/incubator-superset/${SUPERSET_VERSION}/requirements.txt \
         -o /tmp/requirements.txt && \
     pip install --upgrade --no-cache-dir pip && \
     pip install --no-cache-dir pip -r /tmp/requirements.txt && \
     pip install --no-cache-dir \
+        pillow==7.2.0 \
         python-ldap==3.3.1 \
         redis==3.2.1 \
         gevent==1.4.0 \
