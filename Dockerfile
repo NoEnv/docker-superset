@@ -4,7 +4,7 @@ FROM python:3.7-slim
 ARG SUPERSET_VERSION=0.37.1
 
 LABEL maintainer "NoEnv"
-LABEL version "0.37.1"
+LABEL version "0.37.2"
 LABEL description "Superset Docker Image"
 
 # Configure environment
