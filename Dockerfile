@@ -38,6 +38,7 @@ RUN useradd -U -m superset && \
         pillow==7.2.0 \
         python-ldap==3.3.1 \
         redis==3.2.1 \
+        greenlet==0.4.16 \
         gevent==1.4.0 \
         infi.clickhouse-orm==2.1.0 \
         sqlalchemy-clickhouse==0.1.5.post0 \
