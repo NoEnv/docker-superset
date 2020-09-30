@@ -1,3 +1,5 @@
+[![Docker Pulls](https://badgen.net/docker/pulls/noenv/superset)](https://hub.docker.com/r/noenv/superset)
+
 ## docker-superset
 
 #### Description
