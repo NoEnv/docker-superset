@@ -39,7 +39,6 @@ RUN useradd -U -m superset && \
         python-ldap==3.3.1 \
         redis==3.2.1 \
         gevent==1.4.0 \
-        greenlet==0.4.16 \
         infi.clickhouse-orm==2.1.0 \
         sqlalchemy-clickhouse==0.1.5.post0 \
         apache-superset==${SUPERSET_VERSION} && \
