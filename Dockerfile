@@ -54,9 +54,6 @@ RUN useradd -U -m superset && \
 
 # Configure Filesystem
 COPY superset /usr/local/bin
-VOLUME /home/superset \
-       /etc/superset \
-       /var/lib/superset
 WORKDIR /home/superset
 
 # Deploy application
