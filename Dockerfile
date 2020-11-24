@@ -1,10 +1,10 @@
 FROM python:3.7-slim
 
 # Superset version
-ARG SUPERSET_VERSION=0.37.2
+ARG SUPERSET_VERSION=0.38.0
 
 LABEL maintainer "NoEnv"
-LABEL version "0.37.2"
+LABEL version "0.38.0"
 LABEL description "Superset Docker Image"
 
 # Configure environment
@@ -16,10 +16,8 @@ ENV LANG=C.UTF-8 \
 
 # Create superset user & install dependencies
 RUN useradd -U -m superset && \
-    mkdir /etc/superset  && \
-    mkdir ${SUPERSET_HOME} && \
-    chown -R superset:superset /etc/superset && \
-    chown -R superset:superset ${SUPERSET_HOME} && \
+    mkdir -p /etc/superset /tmp/requirements ${SUPERSET_HOME} && \
+    chown -R superset:superset /etc/superset ${SUPERSET_HOME} && \
     apt-get update && \
     apt-get install -y \
         build-essential \
@@ -30,15 +28,14 @@ RUN useradd -U -m superset && \
         curl \
         python3-pil \
         python-dev && \
-    curl -s https://raw.githubusercontent.com/apache/incubator-superset/${SUPERSET_VERSION}/requirements.txt \
-        -o /tmp/requirements.txt && \
+    curl -s https://raw.githubusercontent.com/apache/incubator-superset/${SUPERSET_VERSION}/requirements/base.txt \
+        -o /tmp/requirements/base.txt && \
+    curl -s https://raw.githubusercontent.com/apache/incubator-superset/${SUPERSET_VERSION}/requirements/docker.txt \
+        -o /tmp/requirements/docker.txt && \
     pip install --upgrade --no-cache-dir pip && \
-    pip install --no-cache-dir pip -r /tmp/requirements.txt && \
+    pip install --no-cache-dir pip -r /tmp/requirements/docker.txt && \
     pip install --no-cache-dir \
-        pillow==7.2.0 \
         python-ldap==3.3.1 \
-        redis==3.2.1 \
-        gevent==1.4.0 \
         infi.clickhouse-orm==2.1.0 \
         sqlalchemy-clickhouse==0.1.5.post0 \
         apache-superset==${SUPERSET_VERSION} && \
