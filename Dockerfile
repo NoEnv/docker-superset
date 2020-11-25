@@ -32,6 +32,7 @@ RUN useradd -U -m superset && \
         -o /tmp/requirements/base.txt && \
     curl -s https://raw.githubusercontent.com/apache/incubator-superset/${SUPERSET_VERSION}/requirements/docker.txt \
         -o /tmp/requirements/docker.txt && \
+    sed -i '/-e file/d' /tmp/requirements/base.txt /tmp/requirements/docker.txt && \
     pip install --upgrade --no-cache-dir pip && \
     pip install --no-cache-dir pip -r /tmp/requirements/docker.txt && \
     pip install --no-cache-dir \
