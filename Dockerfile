@@ -36,6 +36,7 @@ RUN useradd -U -m superset && \
     pip install --upgrade --no-cache-dir pip && \
     pip install --no-cache-dir pip -r /tmp/requirements/docker.txt && \
     pip install --no-cache-dir \
+        pillow==7.2.0 \
         python-ldap==3.3.1 \
         infi.clickhouse-orm==2.1.0 \
         sqlalchemy-clickhouse==0.1.5.post0 \
