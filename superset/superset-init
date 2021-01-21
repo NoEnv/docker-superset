@@ -2,11 +2,11 @@
 
 set -e
 
-# Create an admin user
-fabmanager create-admin --app superset $@
-
 # Initialize the database
 superset db upgrade
+
+# Create an admin user
+superset fab create-admin --app superset $@
 
 # Create default roles and permissions
 superset init
