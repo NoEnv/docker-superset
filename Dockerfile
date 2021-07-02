@@ -1,10 +1,10 @@
 FROM python:3.7-slim
 
 # Superset version
-ARG SUPERSET_VERSION=1.1.0
+ARG SUPERSET_VERSION=1.2.0
 
 LABEL maintainer "NoEnv"
-LABEL version "1.1.0"
+LABEL version "1.2.0"
 LABEL description "Superset Docker Image"
 
 # Configure environment
@@ -36,7 +36,7 @@ RUN useradd -U -m superset && \
     pip install --upgrade --no-cache-dir pip && \
     pip install --no-cache-dir pip -r /tmp/requirements/docker.txt && \
     pip install --no-cache-dir \
-        pillow==8.2.0 \
+        pillow==8.3.0 \
         python-ldap==3.3.1 \
         clickhouse-sqlalchemy==0.1.6 \
         apache-superset==${SUPERSET_VERSION} && \
