@@ -1,4 +1,5 @@
 [![Docker Pulls](https://badgen.net/docker/pulls/noenv/superset)](https://hub.docker.com/r/noenv/superset)
+[![build](https://github.com/NoEnv/docker-superset/actions/workflows/build.yml/badge.svg)](https://github.com/NoEnv/docker-superset/actions/workflows/build.yml)
 
 ## docker-superset
 
