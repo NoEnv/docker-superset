@@ -36,7 +36,7 @@ RUN useradd -U -m superset && \
     pip install --upgrade --no-cache-dir pip && \
     pip install --no-cache-dir pip -r /tmp/requirements/docker.txt && \
     pip install --no-cache-dir \
-        pillow>=8.3.2,<9 \
+        pillow==8.4.0 \
         python-ldap==3.4.0 \
         clickhouse-sqlalchemy==0.1.7 \
         apache-superset==${SUPERSET_VERSION} && \
