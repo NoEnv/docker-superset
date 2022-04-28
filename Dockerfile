@@ -38,7 +38,7 @@ RUN useradd -U -m superset && \
     pip install --no-cache-dir \
         pillow==9.1.0 \
         python-ldap==3.4.0 \
-        clickhouse-sqlalchemy==0.2.0 \
+        clickhouse-sqlalchemy==0.1.8 \
         apache-superset==${SUPERSET_VERSION} && \
     apt-get --purge autoremove -y \
         build-essential \
