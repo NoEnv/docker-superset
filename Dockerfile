@@ -1,7 +1,7 @@
 FROM python:3.8-slim
 
 # Superset version
-ARG SUPERSET_VERSION=1.4.2
+ARG SUPERSET_VERSION=1.5.0
 
 LABEL maintainer "NoEnv"
 LABEL version "${SUPERSET_VERSION}"
@@ -36,9 +36,9 @@ RUN useradd -U -m superset && \
     pip install --upgrade --no-cache-dir pip && \
     pip install --no-cache-dir pip -r /tmp/requirements/docker.txt && \
     pip install --no-cache-dir \
-        pillow==9.0.1 \
+        pillow==9.1.0 \
         python-ldap==3.4.0 \
-        clickhouse-sqlalchemy==0.1.8 \
+        clickhouse-sqlalchemy==0.2.0 \
         apache-superset==${SUPERSET_VERSION} && \
     apt-get --purge autoremove -y \
         build-essential \
