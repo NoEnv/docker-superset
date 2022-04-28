@@ -12,7 +12,8 @@ ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8 \
     PYTHONPATH=/etc/superset:/home/superset:$PYTHONPATH \
     SUPERSET_VERSION=${SUPERSET_VERSION} \
-    SUPERSET_HOME=/var/lib/superset
+    SUPERSET_HOME=/var/lib/superset \
+    FLASK_APP=superset.app:create_app()
 
 # Create superset user & install dependencies
 RUN useradd -U -m superset && \
