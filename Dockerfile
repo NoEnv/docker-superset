@@ -1,7 +1,7 @@
 FROM python:3.8-slim
 
 # Superset version
-ARG SUPERSET_VERSION=1.5.0
+ARG SUPERSET_VERSION=1.5.1
 
 LABEL maintainer "NoEnv"
 LABEL version "${SUPERSET_VERSION}"
