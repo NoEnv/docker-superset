@@ -40,6 +40,7 @@ RUN useradd -U -m superset && \
         pillow==9.1.0 \
         python-ldap==3.4.3 \
         clickhouse-sqlalchemy==0.1.10 \
+        sqlalchemy-redshift==0.8.12 \
         apache-superset==${SUPERSET_VERSION} && \
     apt-get --purge autoremove -y \
         build-essential \
