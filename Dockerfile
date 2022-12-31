@@ -41,6 +41,7 @@ RUN useradd -U -m superset && \
         python-ldap==3.4.3 \
         clickhouse-sqlalchemy==0.1.10 \
         sqlalchemy-redshift==0.8.12 \
+        Authlib==1.2.0 \
         apache-superset==${SUPERSET_VERSION} && \
     apt-get --purge autoremove -y \
         build-essential \
