@@ -41,6 +41,7 @@ RUN useradd -U -m superset && \
         python-ldap==3.4.3 \
         clickhouse-connect==0.5.18 \
         sqlalchemy-redshift==0.8.13 \
+        requests==2.26.0 \
         Authlib==1.2.0 \
         apache-superset==${SUPERSET_VERSION} && \
     apt-get --purge autoremove -y \
