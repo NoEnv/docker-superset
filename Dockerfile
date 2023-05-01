@@ -69,5 +69,5 @@ WORKDIR /home/superset
 # Deploy application
 EXPOSE 8088
 HEALTHCHECK CMD ["curl", "-f", "http://localhost:8088/health"]
-ENTRYPOINT ["superset-run"]
+CMD ["superset-run"]
 USER superset
