@@ -27,8 +27,15 @@ RUN useradd -U -m superset && \
         libssl-dev \
         libffi-dev \
         curl \
+        unzip \
         python3-pil \
         python-dev && \
+    curl -s https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o /tmp/google-chrome-stable_current.deb && \
+    apt-get install -y --no-install-recommends /tmp/google-chrome-stable_current.deb && \
+    export CHROMEDRIVER_VERSION=$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE) && \
+    curl -s https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip -o /tmp/chromedriver.zip && \
+    unzip /tmp/chromedriver.zip -d /usr/local/bin && \
+    chmod 755 /usr/local/bin/chromedriver && \
     curl -s https://raw.githubusercontent.com/apache/incubator-superset/${SUPERSET_VERSION}/requirements/base.txt \
         -o /tmp/requirements/base.txt && \
     curl -s https://raw.githubusercontent.com/apache/incubator-superset/${SUPERSET_VERSION}/requirements/docker.txt \
@@ -50,9 +57,10 @@ RUN useradd -U -m superset && \
         libsasl2-dev \
         libssl-dev \
         libffi-dev \
+        unzip \
         python-dev && \
     apt-get clean -y && \
-    rm -r /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* /tmp/google-chrome-stable_current.deb /tmp/chromedriver.zip
 
 # Configure Filesystem
 COPY superset /usr/local/bin
