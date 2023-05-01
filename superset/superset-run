@@ -3,8 +3,9 @@
 set -e
 
 gunicorn \
-      -w 2 \
-      -k gevent \
+      -w 1 \
+      -k gthread \
+      --threads 20 \
       --timeout 120 \
       -b  0.0.0.0:8088 \
       --limit-request-line 0 \
