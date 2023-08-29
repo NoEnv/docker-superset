@@ -29,7 +29,7 @@ RUN useradd -U -m superset && \
         curl \
         unzip \
         python3-pil \
-        python-dev && \
+        python-dev-is-python3 && \
     curl -s https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o /tmp/google-chrome-stable_current.deb && \
     apt-get install -y --no-install-recommends /tmp/google-chrome-stable_current.deb && \
     export CHROMEDRIVER_VERSION=$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE) && \
