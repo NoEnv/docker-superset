@@ -1,6 +1,6 @@
 FROM python:3.9-slim
 
-ARG SUPERSET_VERSION=3.1.0
+ARG SUPERSET_VERSION=3.1.1
 
 LABEL maintainer "NoEnv"
 LABEL version "${SUPERSET_VERSION}"
@@ -41,9 +41,9 @@ RUN useradd -U -m superset && \
     pip install --upgrade --no-cache-dir pip && \
     pip install --no-cache-dir pip -r /tmp/requirements/docker.txt && \
     pip install --no-cache-dir \
-        pillow==9.5.0 \
+        pillow==10.2.0 \
         python-ldap==3.4.4 \
-        clickhouse-connect==0.6.23 \
+        clickhouse-connect==0.7.0 \
         sqlalchemy-redshift==0.8.14 \
         requests==2.31.0 \
         Authlib==1.3.0 \
