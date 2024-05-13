@@ -1,6 +1,6 @@
 FROM python:3.9-slim
 
-ARG SUPERSET_VERSION=4.0.0
+ARG SUPERSET_VERSION=4.0.1
 
 LABEL maintainer "NoEnv"
 LABEL version "${SUPERSET_VERSION}"
