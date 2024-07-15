@@ -1,6 +1,6 @@
 FROM python:3.9-slim
 
-ARG SUPERSET_VERSION=4.0.1
+ARG SUPERSET_VERSION=4.0.2
 
 LABEL maintainer "NoEnv"
 LABEL version "${SUPERSET_VERSION}"
@@ -43,10 +43,10 @@ RUN useradd -U -m superset && \
     pip install --no-cache-dir \
         pillow==10.2.0 \
         python-ldap==3.4.4 \
-        clickhouse-connect==0.7.8 \
+        clickhouse-connect==0.7.16 \
         sqlalchemy-redshift==0.8.14 \
-        requests==2.31.0 \
-        Authlib==1.3.0 \
+        requests==2.32.3 \
+        Authlib==1.3.1 \
         apache-superset==${SUPERSET_VERSION} && \
     apt-get --purge autoremove -y \
         build-essential \
