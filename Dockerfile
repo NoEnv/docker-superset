@@ -27,12 +27,14 @@ RUN useradd -U -m superset && \
         unzip \
         python3-pil \
         python-dev-is-python3 && \
-    curl -s https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o /tmp/google-chrome-stable_current.deb && \
-    apt-get install -y --no-install-recommends /tmp/google-chrome-stable_current.deb && \
-    export CHROMEDRIVER_VERSION=$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE) && \
-    curl -s https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip -o /tmp/chromedriver.zip && \
+    export CHROME_VERSION=$(curl -s https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_STABLE) && \
+    curl -s "https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_${CHROME_VERSION}-1_amd64.deb" -o "/tmp/google-chrome-stable_${CHROME_VERSION}.deb" && \
+    (dpkg -i /tmp/google-chrome-stable_${CHROME_VERSION}.deb || true) && \
+    apt-get install -y -f && \
+    curl -s https://storage.googleapis.com/chrome-for-testing-public/${CHROME_VERSION}/linux64/chromedriver-linux64.zip -o /tmp/chromedriver.zip && \
     unzip /tmp/chromedriver.zip -d /usr/local/bin && \
-    chmod 755 /usr/local/bin/chromedriver && \
+    ln -s /usr/local/bin/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver && \
+    chmod 755 /usr/local/bin/chromedriver-linux64/chromedriver && \
     curl -s https://raw.githubusercontent.com/apache/incubator-superset/${SUPERSET_VERSION}/requirements/base.txt \
         -o /tmp/requirements/base.txt && \
     curl -s https://raw.githubusercontent.com/apache/incubator-superset/${SUPERSET_VERSION}/requirements/docker.txt \
@@ -57,7 +59,7 @@ RUN useradd -U -m superset && \
         unzip \
         python-dev && \
     apt-get clean -y && \
-    rm -rf /var/lib/apt/lists/* /tmp/google-chrome-stable_current.deb /tmp/chromedriver.zip
+    rm -rf /var/lib/apt/lists/* /tmp/google-chrome-stable_${CHROME_VERSION}.deb /tmp/chromedriver.zip
 
 COPY superset /usr/local/bin
 WORKDIR /home/superset
