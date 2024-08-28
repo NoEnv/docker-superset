@@ -2,9 +2,9 @@ FROM python:3.9-slim
 
 ARG SUPERSET_VERSION=4.0.2
 
-LABEL maintainer "NoEnv"
-LABEL version "${SUPERSET_VERSION}"
-LABEL description "Superset Docker Image"
+LABEL maintainer="NoEnv"
+LABEL version="${SUPERSET_VERSION}"
+LABEL description="Superset Docker Image"
 
 ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8 \
@@ -26,13 +26,10 @@ RUN useradd -U -m superset && \
         curl \
         unzip \
         python3-pil \
-        python-dev-is-python3 && \
-    curl -s https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o /tmp/google-chrome-stable_current.deb && \
-    apt-get install -y --no-install-recommends /tmp/google-chrome-stable_current.deb && \
-    export CHROMEDRIVER_VERSION=$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE) && \
-    curl -s https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip -o /tmp/chromedriver.zip && \
-    unzip /tmp/chromedriver.zip -d /usr/local/bin && \
-    chmod 755 /usr/local/bin/chromedriver && \
+        python-dev-is-python3 \
+        chromium \
+        chromium-driver && \
+    ln -s /usr/bin/chromium /usr/local/bin/chrome && \
     curl -s https://raw.githubusercontent.com/apache/incubator-superset/${SUPERSET_VERSION}/requirements/base.txt \
         -o /tmp/requirements/base.txt && \
     curl -s https://raw.githubusercontent.com/apache/incubator-superset/${SUPERSET_VERSION}/requirements/docker.txt \
@@ -57,7 +54,7 @@ RUN useradd -U -m superset && \
         unzip \
         python-dev && \
     apt-get clean -y && \
-    rm -rf /var/lib/apt/lists/* /tmp/google-chrome-stable_current.deb /tmp/chromedriver.zip
+    rm -rf /var/lib/apt/lists/*
 
 COPY superset /usr/local/bin
 WORKDIR /home/superset
