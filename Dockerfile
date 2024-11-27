@@ -1,6 +1,6 @@
-FROM python:3.9-slim
+FROM python:3.11-slim
 
-ARG SUPERSET_VERSION=4.0.2
+ARG SUPERSET_VERSION=4.1.1
 
 LABEL maintainer="NoEnv"
 LABEL version="${SUPERSET_VERSION}"
@@ -30,17 +30,15 @@ RUN useradd -U -m superset && \
         chromium \
         chromium-driver && \
     ln -s /usr/bin/chromium /usr/local/bin/chrome && \
-    curl -s https://raw.githubusercontent.com/apache/incubator-superset/${SUPERSET_VERSION}/requirements/base.txt \
+    curl -s https://raw.githubusercontent.com/apache/superset/${SUPERSET_VERSION}/requirements/base.txt \
         -o /tmp/requirements/base.txt && \
-    curl -s https://raw.githubusercontent.com/apache/incubator-superset/${SUPERSET_VERSION}/requirements/docker.txt \
-        -o /tmp/requirements/docker.txt && \
-    sed -i '/-e file/d' /tmp/requirements/base.txt /tmp/requirements/docker.txt && \
-    pip install --upgrade --no-cache-dir pip && \
-    pip install --no-cache-dir pip -r /tmp/requirements/docker.txt && \
+    sed -i '/-e file/d' /tmp/requirements/base.txt && \
+    pip install --upgrade --no-cache-dir setuptools pip && \
+    pip install --no-cache-dir -r /tmp/requirements/base.txt && \
     pip install --no-cache-dir \
-        pillow==10.2.0 \
+        pillow==10.3.0 \
         python-ldap==3.4.4 \
-        clickhouse-connect==0.7.16 \
+        clickhouse-connect==0.8.7 \
         sqlalchemy-redshift==0.8.14 \
         requests==2.32.3 \
         Authlib==1.3.1 \
