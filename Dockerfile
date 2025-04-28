@@ -40,6 +40,7 @@ RUN useradd -U -m superset && \
         python-ldap==3.4.4 \
         clickhouse-connect==0.8.16 \
         sqlalchemy-redshift==0.8.14 \
+        psycopg2-binary==2.9.6 \
         requests==2.32.3 \
         Authlib==1.5.1 \
         apache-superset==${SUPERSET_VERSION} && \
