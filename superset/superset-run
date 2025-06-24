@@ -7,7 +7,11 @@ gunicorn \
       -k gthread \
       --threads 20 \
       --timeout 120 \
+      --log-level info \
       -b  0.0.0.0:8088 \
       --limit-request-line 0 \
       --limit-request-field_size 0 \
+      --max-requests 0 \
+      --max-requests-jitter 0 \
+      --keep-alive 2 \
       "superset.app:create_app()"
