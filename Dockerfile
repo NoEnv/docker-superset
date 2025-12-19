@@ -1,6 +1,6 @@
-FROM python:3.11-slim
+FROM python:3.12-slim
 
-ARG SUPERSET_VERSION=5.0.0
+ARG SUPERSET_VERSION=6.0.0
 
 LABEL maintainer="NoEnv"
 LABEL version="${SUPERSET_VERSION}"
@@ -36,13 +36,13 @@ RUN useradd -U -m superset && \
     pip install --upgrade --no-cache-dir setuptools pip && \
     pip install --no-cache-dir -r /tmp/requirements/base.txt && \
     pip install --no-cache-dir \
-        pillow==10.3.0 \
-        python-ldap==3.4.4 \
-        clickhouse-connect==0.8.17 \
+        pillow==11.3.0 \
+        python-ldap==3.4.5 \
+        clickhouse-connect==0.10.0 \
         sqlalchemy-redshift==0.8.14 \
-        psycopg2-binary==2.9.10 \
-        requests==2.32.4 \
-        Authlib==1.5.2 \
+        psycopg2-binary==2.9.11 \
+        requests==2.32.5 \
+        Authlib==1.6.6 \
         apache-superset==${SUPERSET_VERSION} && \
     apt-get --purge autoremove -y \
         build-essential \
