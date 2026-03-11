@@ -57,7 +57,7 @@ jobs:
 
       - name: Import images
         run: |
-          podman load -i ./image-amd64/image.tar
+          podman load -i ./image.tar
 
       - name: Create multi-arch manifest
         run: |
