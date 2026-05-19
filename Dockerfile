@@ -1,6 +1,6 @@
 FROM python:3.12-slim
 
-ARG SUPERSET_VERSION=6.0.0
+ARG SUPERSET_VERSION=6.1.0
 
 LABEL maintainer="NoEnv"
 LABEL version="${SUPERSET_VERSION}"
@@ -32,17 +32,17 @@ RUN useradd -U -m superset && \
     ln -s /usr/bin/chromium /usr/local/bin/chrome && \
     curl -s https://raw.githubusercontent.com/apache/superset/${SUPERSET_VERSION}/requirements/base.txt \
         -o /tmp/requirements/base.txt && \
-    sed -i '/-e file/d' /tmp/requirements/base.txt && \
+    sed -i '/^-e /d' /tmp/requirements/base.txt && \
     pip install --upgrade --no-cache-dir setuptools pip && \
     pip install --no-cache-dir -r /tmp/requirements/base.txt && \
     pip install --no-cache-dir \
         pillow==11.3.0 \
-        python-ldap==3.4.5 \
-        clickhouse-connect==0.10.0 \
+        python-ldap==3.4.6 \
+        clickhouse-connect==1.0.0 \
         sqlalchemy-redshift==0.8.14 \
-        psycopg2-binary==2.9.11 \
-        requests==2.32.5 \
-        Authlib==1.6.6 \
+        psycopg2-binary==2.9.12 \
+        requests==2.34.2 \
+        Authlib==1.7.2 \
         apache-superset==${SUPERSET_VERSION} && \
     apt-get --purge autoremove -y \
         build-essential \
